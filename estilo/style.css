@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Press+Start+2P&display=swap');
+
+@font-face {
+    font-family: 'Android';
+        src: url('../fontes/idroid.otf') format('opentype');    /*importação interna*/
+}
+
+/* Variaveis  começam com -- */  
+:root {
+    --cor0: #C4F3DB;
+    --cor1: #56F0A1;
+    --cor2: #7BBA99;
+    --cor3: #65826D;
+    --cor4: #486E5A;
+    --cor5: #276E49;
+      
+    --fonte-padrao: Arial, Helvetica, sans-serif;
+    --fonte-destaque:'Bebas Neue', cursive;
+    --fonte-android: 'Android', cursive;
+
+} 
+/* uso do seletor * para aplicar configuração padrão pra todos os elementos dentro de <html>*/
+
+* {                 /*elimino as configuracoes default de margem e padding*/
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--cor0);  /*escolho com crtl+spc a partir das var listadas em :root*/
+    font-family: var(--fonte-padrao);   /*posso tb escrever var(--nome-da-variavel)*/
+}
+
+header{
+    background-image: linear-gradient(to bottom, var(--cor1), var(--cor5));
+    background-color: var(--cor4);
+    min-height: 120px;
+    text-align: center;    
+    }
+header > h1 {
+    color: white;
+    font: italic 4em var(--fonte-destaque);
+/*  margin-top: 40px;   /*não fica bem, pois background aparece acima do header; melhor colocar padding-top */
+    padding: 30px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.603);
+    /*sombras em textos - mesma regra uada em box-shadow*/
+}
+header > p {
+    color: white;
+    font: 1.5em var(--fonte-padrao);
+    padding: 0px 20px 10px;
+    max-width: 500px;
+    margin: auto;    /*centraliza o conteúdo, independente do tamanho da tela. Mas se muito pequeno, dá rolagem lateral.           /* Naõ funciona para a imagem*/
+                    /*existem outras tecnicas melhores: flex box, pex.*/
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.603);
+}
+
+nav {
+    background-color: var(--cor3);
+    box-shadow: 0px 3px 3px black;
+    padding: 10px;
+    text-align: left;
+}
+nav > a {
+    color: var(--cor1);
+    font-weight: bold;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition-duration: 1s;
+    
+}
+nav > a:hover {
+    background-color: #2a3f34;
+    color: #56F0A1;
+}
+
+main {
+    background-color: snow;
+    max-width: 1000px;
+    min-width: 360px;
+    margin: auto;       /*centraliza o conteudo na tela*/
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.459);
+    border-radius: 0px 0px 20px 20px;
+}
+main h1 {
+    margin-top: 20px;
+    color: var(--cor4);
+    font: 2em var(--fonte-android);
+}
+main h2 {
+    margin-top: 40px;
+    font-family:var(--fonte-android);
+    font-size: 1.5em;
+    text-indent: 10px;
+    background-image: linear-gradient(to right, var(--cor0), transparent);
+}
+main p {    
+/*main p {} pra qq paragrafo dentro de qq tag dentro de main/* é diferente de  main > p {} serve somente para paragrafos filhos de main*/ 
+    margin:15px 0px;
+    text-align: justify;
+    text-indent: 30px;  
+    line-height: 1.5em;   /*espaçamento entrelinhas no paragarafo*/
+}
+
+a.externo::after {      /* after ancoras de class externo acrescenta conteudo (espaço e icone retirado do emojipedia)*/
+    content: '\00A0\1F517';
+}
+main a {
+    text-decoration: none;
+    font-weight: bold;
+    background-color: var(--cor0);
+    color: var(--cor5);
+}
+main a:hover {
+    color: orangered;
+    text-decoration: underline;
+}
+
+main strong {
+    color: var(--cor5);
+    font-weight: bold;
+}
+
+main img {
+    width: 100%;            /*agora tamanho da imagem se ajusta ao tamanho da tela (1000px a 360px)*/
+}
+main img.bugdroid { 
+    width: 350px;  /* se eu colocar 50% a img diminui e fica embaçada*/
+    display: block;         
+    margin: auto;       
+    /*só a margin:auto; não serviria pra centralizar, porque img é inline level. Pra isso altero pra display: block;*/
+}
+
+/*default  position:static;  - mantem a hierarquia conforme disposto no documento html*/
+div.video {
+    position: relative;
+    /*considera o posicionamento atual da div e a mantém adaptável para eventuais alterações no tamanho de tela*/
+    background-color: var(--cor4);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 60%;
+}
+div.video > iframe {
+    position: absolute;
+    /*torna a div o ponto de partida para o posicionamento do frame e, a partir daí, configuramos seu deslocamento (top, left) e tamanho (width, height), todos em porcentagem de tela*/
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+aside {
+    background-color: var(--cor1);
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 5px rgba(0, 0, 0, 0.548);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+}
+aside > h3 {
+    background-color: var(--cor4);
+    color: white;
+    padding: 10px;
+    margin: -10px -10px 0px -10px;
+}
+aside > ul {
+    list-style-position: inside;
+    /*exibe marcadores na parte interna da caixa; por default, eles ficam externos*/
+    /* list-style-type: square; */
+    list-style-type: '\2714\00A0\00A0'; 
+    /*personaliza o marcador; do emojipedia busquei o codigo do check /* 00A0 é o codigo pra espaço*/
+    columns: 2;  /*organiza a lista em duas colunas*/
+}
+
+footer {
+    background-color: #2a3f34;
+    color: white;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 10px;
+}
+footer > p > a {    /*ou simplesmente footer a {}*/
+    color: yellow;
+    font-weight: bolder;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+    background-color: var(--cor0);
+    color: orangered;
+}
+
